@@ -15,8 +15,19 @@ export function Project(props) {
                     setIsLoading(false);
                 }
             }
+
         }
     }, [])
+
+    const onClick = (ev) => {
+        // Flicker animation
+        ev.currentTarget.animate(
+            [{ opacity: 1 }, { opacity: 0.30 }],
+            { duration: 80, iterations: 3, easing: "linear" }
+        ).play();
+
+        OpenProject(project.Path);
+    }
 
     return (
         <div
@@ -24,7 +35,7 @@ export function Project(props) {
             style={{ "--delay": delay + "ms", "--mask-url": `url(#fill-mask-${id})` }}
             key={project.Name}
             ref={elemRef}
-            onClick={() => OpenProject(project.Path)}
+            onClick={onClick}
         >
             <div className="project__body">
                 <div className="project__content">

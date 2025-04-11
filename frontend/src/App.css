@@ -213,7 +213,6 @@ svg {
 
 .project:hover {
     transform: translateZ(15px);
-    scale: 1;
 
     .project__frame-triangle path {
         fill: transparent;
@@ -225,30 +224,6 @@ svg {
 
     .project__frame-triangle.bottom-left {
         transform: translate(-2px, 2px);
-    }
-}
-
-.project:active {
-    color: var(--color-secondary);
-    transform: translateZ(15px);
-    animation: flicker 100ms linear 3;
-
-    .project__frame-main {
-        fill: var(--color-primary);
-    }
-
-    .project__frame-triangle path {
-        fill: var(--color-primary);
-    }
-}
-
-@keyframes flicker {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0.30;
     }
 }
 
