@@ -22,7 +22,7 @@ export function Project(props) {
     const onClick = (ev) => {
         // Flicker animation
         ev.currentTarget.animate(
-            [{ opacity: 1 }, { opacity: 0.30 }],
+            [{ opacity: 0.30 }, { opacity: 1 }],
             { duration: 80, iterations: 3, easing: "linear" }
         ).play();
 
@@ -60,42 +60,48 @@ export function Project(props) {
                                 <feComposite in="color" in2="blur" operator="in" result="glow" />
                             </filter>
 
+                            {/* Fill effect */}
                             <mask id={`fill-mask-${id}`}>
                                 <rect width="160%" height="100%" fill="white" x="0" y="0"></rect>
                             </mask>
                         </defs>
 
-                        {/* Outline */}
-                        <path
-                            d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z"
-                            stroke="#FFB254"
-                            strokeWidth="1"
-                            strokeMiterlimit="1"
-                            strokeLinejoin="round"
-                        />
+                        <clipPath id="outline" clipRule="userSpaceOnUse">
+                            <path d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z" />
+                        </clipPath>
 
-                        {/* Glow stroke */}
-                        <path
-                            d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z"
-                            filter="url(#glow)"
-                            fill="none"
-                            stroke="#FFB254"
-                            strokeWidth="2"
-                            strokeMiterlimit="1"
-                            strokeLinejoin="round"
-                        />
-
-                        {/* Animated fill */}
-                        <path
-                            d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z"
-                            fill="#FFB254"
-                            mask={`url(#fill-mask-${id})`}
-                        />
+                        <g clipPath="url(#outline)" clipRule="evenodd">
+                            {/* Outline */}
+                            <path
+                                d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z"
+                                stroke="#FFB254"
+                                strokeWidth="2.5"
+                                strokeMiterlimit="1"
+                                strokeLinejoin="round"
+                            />
+                            {/* Glow stroke */}
+                            <path
+                                d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z"
+                                filter="url(#glow)"
+                                fill="none"
+                                stroke="#FFB254"
+                                strokeWidth="2.5"
+                                strokeMiterlimit="1"
+                                strokeLinejoin="round"
+                                clip=""
+                            />
+                            {/* Animated fill */}
+                            <path
+                                d="M205.846 1H1V103.739L26.1542 129H231V26.2609L205.846 1Z"
+                                fill="#FFB254"
+                                mask={`url(#fill-mask-${id})`}
+                            />
+                        </g>
                     </svg>
 
-                    <svg className="project__frame-triangle top-right" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    {/* <svg className="project__frame-triangle top-right" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17 16.8476L1.21928 1H17V16.8476Z" stroke="#FFB254" strokeWidth="2" strokeMiterlimit="1" strokeLinejoin="round" />
-                    </svg>
+                    </svg> */}
 
                     <svg className="project__frame-triangle bottom-left" width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M16.7807 16.8476H1V1L16.7807 16.8476Z" stroke="#FFB254" strokeWidth="2" strokeMiterlimit="1" strokeLinejoin="round" />

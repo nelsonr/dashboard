@@ -212,7 +212,7 @@ svg {
 }
 
 .project:hover {
-    transform: translateZ(15px);
+    transform: translateZ(20px);
 
     .project__frame-triangle path {
         fill: transparent;

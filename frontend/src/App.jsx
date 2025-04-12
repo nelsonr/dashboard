@@ -5,7 +5,7 @@ import './App.css';
 
 function App() {
     const [projects, setProjects] = useState([]);
-    const [hideClientProjects, setHideClientProjects] = useState(false);
+    const [hideClientProjects, setHideClientProjects] = useState(true);
 
     useEffect(() => {
         LoadProjects().then(setProjects);
